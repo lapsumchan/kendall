@@ -16,7 +16,7 @@ if(!require(devtools)) {
   install.packages("devtools")
   library(devtools)
 }
-devtools::install("lapsumchan/kendall", build_vignettes = TRUE)
+devtools::install_github("lapsumchan/kendall", build_vignettes = TRUE)
 ```
 
 ## Details
