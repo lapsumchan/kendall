@@ -20,3 +20,4 @@ devtools::install("lapsumchan/kendall", build_vignettes = TRUE)
 ```
 
 ## Details
+Given a matrix `X` with 2 columns, we implemented `kendall_tau` function that first rearranges the rows of the entire matrix based on its second column `X[,2]`. Since the second column of matrix `X` is rearranged in ascending order, it is true that `X[i,2] < X[j,2]` if `i < j` because of the no ties assumption.
