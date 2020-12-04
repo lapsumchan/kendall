@@ -36,7 +36,9 @@ all.equal(kendall_tau(X), cor(X, method = "kendall")[1,2])
 
 To compare the efficiency of this implementation with that of base R function `cor`, we will make use of the `bench` package:
 ```{r}
-library(bench)
+if(!require(bench)) {
+  remotes::install_github("r-lib/bench")
+  library(bench)}
 ```
 
 Using the same simulated data set as above, we can again compare the efficiency of the two functions using the `mark` function by `bench`.

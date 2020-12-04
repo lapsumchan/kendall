@@ -4,7 +4,7 @@
 \docType{package}
 \title{Kendall Tau correlation coefficient}
 \description{
-  Calculating Kendall Tau using merge sort.
+  Calculating Kendall Tau using merge sort. To learn more about kendall, start with the vignettes: \item{browseVignettes("kendall")}
 }
 \details{
   This section should provide a more detailed overview of how to use the
