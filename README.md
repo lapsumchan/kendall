@@ -7,7 +7,7 @@
 
 ## Overview
 
-kendall is an efficient R package that calculates the Kendall Tau(https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient) between two continuous variables, assuming that each of the variables does not have ties.
+kendall is an efficient R package that calculates the [Kendall Tau](https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient) between two continuous variables, assuming that each of the variables does not have ties.
 
 ## Installation
 ``` r
