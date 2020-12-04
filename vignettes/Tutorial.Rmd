@@ -38,7 +38,8 @@ To compare the efficiency of this implementation with that of base R function `c
 ```{r}
 if(!require(bench)) {
   remotes::install_github("r-lib/bench")
-  library(bench)}
+  library(bench)
+}
 ```
 
 Using the same simulated data set as above, we can again compare the efficiency of the two functions using the `mark` function by `bench`.
