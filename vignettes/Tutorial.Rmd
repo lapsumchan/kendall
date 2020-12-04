@@ -1,0 +1,47 @@
+---
+title: "Tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The purpose of this Vignette is to demonstrate the usage of the `kendall_tau` function, and also to illustrate both the correctness and the efficiency of the `kendall_tau` function.
+
+First, we load the package:
+```{r setup}
+library(kendall)
+```
+
+To use the `kendall_tau` function, the users will need to input a matrix with two columns of real numbers which they want to calculate the Kendall $\tau$ on. Notice that this implementation assumes no ties in each column.
+```{r}
+X <- matrix(c(4,5,3,1,2,6,8,9,7,10),5,2)
+kendall_tau(X)
+```
+
+To see that the `kendall_tau` function is implemented correctly, we simulated two columns of 2000 observations without ties and compared the output against that of given by the base R function `cor`.
+```{r}
+set.seed(20201128)
+X <- replicate(2, sample(c(-5000:5000), 2000))
+all.equal(kendall_tau(X), cor(X, method = "kendall")[1,2])
+```
+
+To compare the efficiency of this implementation with that of base R function `cor`, we will make use of the `bench` package:
+```{r}
+library(bench)
+```
+
+Using the same simulated data set as above, we can again compare the efficiency of the two functions using the `mark` function by `bench`.
+```{r}
+result <- bench::mark(kendall_tau(X), cor(X, method = "kendall")[1,2])
+print(result)
+```
+ The performance metrics are summarized in `result`, and we can see that our `kendall_tau` function is in the order of magnitude of microseconds ($\mu$), whereas the base R `cor` function is in the order of magnitude of miliseconds ($m$). This means that our `kendall_tau` function is at least 100 times faster than the base R `cor` function. This is likely due the the fact that the base R `cor` function is implemented using a $O(n^2)$ time complexity algorithm, whereas our `kendall_tau` function takes full advantage of sorting techniques and has time complexity $O(n log n)$.
